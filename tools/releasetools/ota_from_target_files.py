@@ -821,6 +821,27 @@ else if get_stage("%(bcb_dev)s") == "3/3" then
 
   # Dump fingerprints
   script.Print("Target: {}".format(target_info.fingerprint))
+  android_version = target_info.GetBuildProp("ro.build.version.release")
+  build_id = target_info.GetBuildProp("ro.build.id")
+  build_date = target_info.GetBuildProp("ro.build.date")
+  security_patch = target_info.GetBuildProp("ro.build.version.security_patch")
+  device = target_info.GetBuildProp("ro.havoc.device")
+  havoc_maintainer = target_info.GetBuildProp("ro.maintainer.name")
+
+  script.Print("--------------------------------------------------");
+  script.Print("| |  | |                        / __ \ / ____|    ");
+  script.Print("| |__| | __ ___   _____   ___  | |  | | (___      ");
+  script.Print("|  __  |/ _` \ \ / / _ \ / __| | |  | |\___ \     ");
+  script.Print("| |  | | (_| |\ V / (_) | (__  | |__| |____) |    ");
+  script.Print("|_|  |_|\__,_| \_/ \___/ \___|  \____/|_____/     ");
+  script.Print("--------------------------------------------------");
+  script.Print(" Android version: %s"%(android_version));
+  script.Print(" Build id: %s"%(build_id));
+  script.Print(" Build date: %s"%(build_date));
+  script.Print(" Security patch: %s"%(security_patch));
+  script.Print(" Device: %s"%(device));
+  script.Print(" Maintainer: %s"%(octavi_maintainer));
+  script.Print("--------------------------------------------------");
 
   device_specific.FullOTA_InstallBegin()
 
