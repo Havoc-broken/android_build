@@ -890,12 +890,12 @@ else if get_stage("%(bcb_dev)s") == "3/3" then
   common.ZipWriteStr(output_zip, "boot.img", boot_img.data)
 
   device_specific.FullOTA_PostValidate()
+  
+  script.WriteRawImage("/boot", "boot.img")
 
   if OPTIONS.backuptool:
     script.ShowProgress(0.02, 10)
     script.RunBackup("restore", sysmount, target_info.get('use_dynamic_partitions') == "true")
-
-  script.WriteRawImage("/boot", "boot.img")
 
   script.ShowProgress(0.1, 10)
   device_specific.FullOTA_InstallEnd()
